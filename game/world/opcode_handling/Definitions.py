@@ -24,6 +24,7 @@ from game.world.opcode_handling.handlers.WhoHandler import WhoHandler
 from game.world.opcode_handling.handlers.PlayerMacroHandler import PlayerMacroHandler
 
 from game.world.opcode_handling.handlers.QuestGiverStatusHandler import QuestGiverStatusHandler
+from game.world.opcode_handling.handlers.QuestGiverHelloHandler import QuestGiverHelloHandler
 
 from game.world.opcode_handling.handlers.StandStateChangeHandler import StandStateChangeHandler
 from game.world.opcode_handling.handlers.MountSpecialAnimHandler import MountSpecialAnimHandler
@@ -84,7 +85,7 @@ HANDLER_DEFINITIONS = {
     OpCode.CMSG_PLAYER_MACRO: PlayerMacroHandler.handle,
 
     OpCode.CMSG_QUESTGIVER_STATUS_QUERY: QuestGiverStatusHandler.handle,
-    # OpCode.CMSG_QUESTGIVER_HELLO: QuestGiverHelloHandler.handle,
+    OpCode.CMSG_QUESTGIVER_HELLO: QuestGiverHelloHandler.handle,
 
     OpCode.CMSG_STANDSTATECHANGE: StandStateChangeHandler.handle,
     OpCode.CMSG_MOUNTSPECIAL_ANIM: MountSpecialAnimHandler.handle,

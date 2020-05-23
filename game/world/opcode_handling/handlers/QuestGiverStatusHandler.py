@@ -22,71 +22,8 @@ class QuestGiverStatusHandler(object):
 
             if world_session.player_mgr:
                 #   Get the status for this questgiver
-                questgiver_status = ObjectCodes.QuestGiverStatuses.QUEST_GIVER_NONE
-                questgiver_status = world_session.player_mgr.quests.get_dialog_status(questgiver_npc, questgiver_status)
+                questgiver_status = world_session.player_mgr.quests.get_dialog_status(questgiver_npc)
                 #   Construct the packet and send it off
                 world_session.player_mgr.quests.send_quest_status(questgiver_guid, questgiver_status)
 
         return 0
-
-    #   TODO: Create seperate handler files for all of the below
-
-    # @staticmethod
-    # def handle_questgiver_accept(world_session, socket, reader):
-    #     pass
-
-    # @staticmethod
-    # def handle_questgiver_query(world_session, socket, reader):
-    #     pass
-
-    # @staticmethod
-    # def handle_questgiver_choose_reward(world_session, socket, reader):
-    #     pass
-
-    # @staticmethod
-    # def handle_questgiver_request_reward(world_session, socket, reader):
-    #     pass
-
-    # @staticmethod
-    # def handle_questgiver_complete(world_session, socket, reader):
-    #     pass
-
-    # # @staticmethod
-    # # def handle_questgiver_auto_launch(world_session, socket, reader):
-    # #     pass
-
-
-    # @staticmethod
-    # def handle_questgiver_cancel(world_session, socket, reader):
-    #     pass
-
-
-    # ##  Quest
-
-    # @staticmethod
-    # def handle_quest_query(world_session, socket, reader):
-    #     pass
-
-    # @staticmethod
-    # def handle_quest_push_to_party(world_session, socket, reader):
-    #     pass
-
-    # @staticmethod
-    # def handle_quest_push_result(world_session, socket, reader):
-    #     pass
-
-
-    # @staticmethod
-    # def handle_quest_confirm_accept(world_session, socket, reader):
-    #     pass
-
-
-    #     ##  Quest Log
-    # @staticmethod
-    # def handle_questlog_swap(world_session, socket, reader):
-    #     pass
-
-    # @staticmethod
-    # def handle_questlog_remove(world_session, socket, reader):
-    #     pass
-
