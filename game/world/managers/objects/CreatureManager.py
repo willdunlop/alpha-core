@@ -159,5 +159,3 @@ class CreatureManager(UnitManager):
     # override
     def get_type_id(self):
         return ObjectTypeIds.ID_UNIT
-
-    def is_enemy_to()

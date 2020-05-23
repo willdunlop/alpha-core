@@ -8,10 +8,6 @@ from utils.constants.ObjectCodes import QuestGiverStatuses, QuestStatuses
 class QuestManager(object):
     def __init__(self, owner):
         self.owner = owner
-        # self.menu = {}
-
-    # class QuestMenu:
-    #     pass
 
     def get_dialog_status(self, world_obj):
         dialog_status = QuestGiverStatuses.QUEST_GIVER_NONE
