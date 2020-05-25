@@ -9,6 +9,7 @@ from game.world.managers.objects.UnitManager import UnitManager
 from game.world.managers.objects.player.guild.GuildManager import GuildManager
 from game.world.managers.objects.player.InventoryManager import InventoryManager
 from game.world.managers.objects.player.QuestManager import QuestManager
+from game.world.managers.objects.player.GossipMenuManager import GossipMenuManager
 from game.world.opcode_handling.handlers.NameQueryHandler import NameQueryHandler
 from network.packet.PacketWriter import *
 from utils.constants.ObjectCodes import ObjectTypes, UpdateTypes, ObjectTypeIds, PlayerFlags, WhoPartyStatuses, HighGuid, QuestGiverStatuses
@@ -86,6 +87,7 @@ class PlayerManager(UnitManager):
             self.guid = self.player.guid | HighGuid.HIGHGUID_PLAYER
             self.inventory = InventoryManager(self)
             self.quests = QuestManager(self)
+            self.gossip_menu = GossipMenuManager(self)
             self.level = self.player.level
             self.bytes_0 = unpack('<I', pack('<4B', self.player.race, self.player.class_, self.player.gender, self.power_type))[0]
             self.bytes_1 = unpack('<I', pack('<4B', self.stand_state, 0, self.shapeshift_form, self.sheath_state))[0]
@@ -162,7 +164,7 @@ class PlayerManager(UnitManager):
         elif self.player.race == Races.RACE_TROLL:
             self.bounding_radius = 0.306
 
-        self.race_mask = 1 << self.player.race
+        self.race_mask = 1 << (self.player.race - 1)
         self.class_mask = 1 << self.player.class_
 
     def set_gm(self, on=True):

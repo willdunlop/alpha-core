@@ -14,13 +14,16 @@ class QuestGiverHelloHandler(object):
     def handle(world_session, socket, reader):
         if len(reader.data) >= 8:
             guid = unpack('<Q', reader.data[:8])[0]
-            questgiver_npc = GridManager.get_surrounding_unit_by_guid(world_session.player_mgr, guid)
-            if not questgiver_npc:
-                Logger.error("Error with OpCode CMSG_QUESTGIVER_HELLO, could not find questgiver with guid of: %s"%(guid))
+            quest_giver = GridManager.get_surrounding_unit_by_guid(world_session.player_mgr, guid)
+            if not quest_giver:
+                Logger.error("Error with OpCode CMSG_QUESTGIVER_HELLO, could not find quest giver with guid of: %s"%(guid))
                 return 0
 
-            print("QGiver: %s"%(questgiver_npc.entry))
-            print("QGiver.faction: %s"%(questgiver_npc.faction))
+            print("QGiver: %s"%(quest_giver.entry))
+            print("QGiver.faction: %s"%(quest_giver.faction))
+
+            # print("Testing is_friendly_to: %s"%(world_session.player_mgr.is_friendly_to(quest_giver)))            
+            world_session.player_mgr.quests.prepare_quest_giver_gossip_menu(quest_giver)
 
             # TODO: Cancel feign death, if it even exists at this point
 
